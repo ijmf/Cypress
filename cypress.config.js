@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://example.cypress.io',
+    baseUrl: 'http://localhost:3000/',
     viewportHeight: 1080,
     viewportWidth: 1920,
     retries: {
