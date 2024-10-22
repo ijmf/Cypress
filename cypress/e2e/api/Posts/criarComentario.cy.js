@@ -6,7 +6,7 @@ describe('Posts', () => {
 
     it('Cria um comentário', () => {
         const valorComentario = 'Comentário feito em Post IJMF v2';
-        const postId = '6717a342bfd52117e89b718f'; // ID do post
+        const postId = '6717efd8bfd52117e89b7217'; // ID do post, necessário sempre alterar esse postId, ele vence com o tempo.
 
         // Certifique-se de que o JWT está sendo obtido corretamente
         const jwt = Cypress.env('jwt'); // Verifique se o JWT está corretamente definido
@@ -21,7 +21,7 @@ describe('Posts', () => {
             },
             headers: {
                 'accept': 'application/json',
-                'Cookie': `jwt=${jwt}` // Usando o JWT como cookie
+                'Cookie': `jwt=${jwt}` // Usando o JWT como cookie, Necessário sempre atualizar o jwt, ele vence com o tempo.
             },
             failOnStatusCode: false // Para depuração, pode ser removido depois
         }).then(({ status, body }) => {
