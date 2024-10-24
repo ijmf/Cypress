@@ -1,28 +1,50 @@
 describe('Cabeçalho da página home', () => {
-    const menuItems = [
-        { testId: 'navbar-conexaoQA', href: '/' },
-        { testId: 'navbar-QAs', href: '/perfis' },
-        { testId: 'navbar-about', href: '/sobre' },
-        { testId: 'navbar-register', href: '/cadastrar' },
-        { testId: 'navbar-login', href: '/login' },
-    ];
+
+    const validarMenu = (seletor, href) => {
+        cy.getElement(seletor)
+            .should('have.attr', 'href', href)
+            .and('not.have.attr', 'target');
+    }
 
     context('Não logado', () => {
         beforeEach(() => {
             cy.visit('/');
         });
 
-        menuItems.forEach(({ testId, href }) => {
+        const menuItems = [
+            { seletor: 'navbar-conexaoQA', href: '/' },
+            { seletor: 'navbar-QAs', href: '/perfis' },
+            { seletor: 'navbar-about', href: '/sobre' },
+            { seletor: 'navbar-register', href: '/cadastrar' },
+            { seletor: 'navbar-login', href: '/login' },
+        ];
 
-            it(`Valida menu ${testId.replace('navbar-', '')}`, () => {
-                cy.get(`[data-test=${testId}]`)
-                    .should('have.attr', 'href', href)
-                    .and('not.have.attr', 'target');
+        menuItems.forEach(({ seletor, href }) => {
+
+            it(`Valida menu ${seletor.replace('navbar-', '')}`, () => {
+                validarMenu(seletor, href)
             });
         });
     });
 
     context('Logado', () => {
-        // Adicione os testes para a situação "Logado" aqui
-    });
+        beforeEach(() => {
+            cy.login(Cypress.env('email'), Cypress.env('senha'))
+            cy.visit('/dashboard')
+        })
+            ;
+        const menu = [
+            { seletor: 'navbar-conexaoQA', href: '/' },
+            { seletor: 'navbar-QAs', href: '/perfis' },
+            { seletor: 'navbar-posts', href: '/posts' },
+            { seletor: 'navbar-dashboard', href: '/dashboard' },
+            { seletor: 'navbar-about', href: '/sobre' },
+            { seletor: 'navbar-logout', href: '/' },
+        ]
+        menu.forEach(({ seletor, href }) => {
+            it(`Valida menu ${seletor.replace('navbar-', '')}`, () => {
+                validarMenu(seletor, href)
+            });
+        });
+    })
 });

@@ -23,7 +23,7 @@ describe('Página inicial', () => {
             .should('have.css', 'color', 'rgb(51, 51, 51)')
     })
 
-    it('Seleciona elemento utilizando o Filter', () => {
+    it('Seleciona elemento utilizando o Filter ou Eq', () => {
         //Filtrar utilizando o comando filter
         cy.get('a')
             .filter('.btn-primary')

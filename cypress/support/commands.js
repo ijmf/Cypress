@@ -11,3 +11,8 @@ Cypress.Commands.add('login', (email, password) => {
         })
     }, { cacheAcrossSpecs: true })
 })
+
+//Seleciona um elemento pelo atributo data-test
+Cypress.Commands.add('getElement', (seletor) => {
+    return cy.get(`[data-test=${seletor}]`)
+})
