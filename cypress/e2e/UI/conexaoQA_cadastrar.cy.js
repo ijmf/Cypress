@@ -82,10 +82,10 @@ describe('Página de Cadastrar', () => {
 
         //Preenche o Nome
         cy.getElement('register-name')
-            .type('Ivan Ferreira4')
+            .type('Ivan Ferreira6')
         //Preenche o Email
         cy.getElement('register-email')
-            .type('ivanjf4@yahoo.com.br')
+            .type('ivanjf6@yahoo.com.br')
         //Preenche a Senha
         cy.getElement('register-password')
             .type('123456')
